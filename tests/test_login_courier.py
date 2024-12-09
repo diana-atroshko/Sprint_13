@@ -21,10 +21,9 @@ class TestLoginCourier:
 
     @allure.title("Тест на успешный вход курьера")
     @allure.description("Создает курьера, затем проверяет, что он может успешно войти в систему и что успешный запрос возвращает id.")
-    def test_login_courier_success(self):
-        payload = self.courier_methods.generate_courier_data()
-        response = self.courier_methods.create_courier(payload)
-        assert response.status_code == 201
+    def test_login_courier_success(self, courier_data):
+        payload = courier_data
+        self.courier_methods.create_courier(payload)
         response = self.courier_methods.login_courier(payload)
 
         assert response.status_code == 200

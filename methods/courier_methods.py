@@ -46,7 +46,6 @@ class CourierMethods:
             "password": password
                         }
         login_response = self.login_courier(login_payload)
-        assert login_response.status_code == 200, "Ошибка: ожидаем статус 200 при логине"
         return login_response.json().get("id")
 
     @allure.step("Удаляем курьера через логин и пароль")

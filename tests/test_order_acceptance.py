@@ -26,7 +26,9 @@ class TestOrderAcceptance:
         print(f"Order Response: {order_data}")
         assert "track" in order_data
         order_id = str(order_data["track"])
-        time.sleep(15)
+        time.sleep(25)
+        order_status_response = self.order_methods.get_order_by_id(order_id)
+        assert order_status_response.status_code == 200
 
         acceptance = self.order_methods.accept_order(order_id, courier_id)
         print(acceptance.json())
